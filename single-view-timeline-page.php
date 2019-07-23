@@ -72,19 +72,17 @@ if( $posts ):
 		            <h1 class="event-title d-none d-md-block">
 		              <?php echo wp_trim_words(the_title($before = '', $after = '', $echo = false), 7); ?>
 		            </h1>
-		            <h1 class="event-title d-md-none">
-		              <a class="text-white" href="<?php echo get_permalink(); ?>">
-		                <?php echo wp_trim_words(the_title($before = '', $after = '', $echo = false), 7); ?>
-		              </a>
-		            </h1>
 		            <div class="d-none d-md-block">
 		              <?php the_excerpt(); ?>
 		            </div>
-		            <p class="d-none d-md-block">
-		              <a class="text-white" href="<?php echo get_permalink(); ?>">
-		                Continue reading
-		              </a>
-		            </p>
+	              <a class="text-white" href="<?php echo get_permalink(); ?>">
+									<p class="d-none d-md-block">
+	                	Continue reading
+									</p>
+									<h1 class="event-title d-md-none">
+			            	<?php echo wp_trim_words(the_title($before = '', $after = '', $echo = false), 7); ?>
+			            </h1>
+	              </a>
 		          </div>
 		        </div>
 					</div>

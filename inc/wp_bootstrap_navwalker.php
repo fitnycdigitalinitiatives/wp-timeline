@@ -79,9 +79,6 @@ class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 			if (! empty( $item->attr_title )) {
 				$atts['title']  = $item->attr_title;
 			}
-			elseif (! empty( $item->title )) {
-				$atts['title']  = $item->title;
-			}
 			$atts['target'] = ! empty( $item->target )	? $item->target	: '';
 			$atts['rel']    = ! empty( $item->xfn )		? $item->xfn	: '';
       $atts['href']   = ! empty( $item->url )        ? $item->url        : '';
