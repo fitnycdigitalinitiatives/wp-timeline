@@ -12,10 +12,13 @@ get_header(); ?>
 <?php if ( have_posts() ) : ?>
 	<div class="container mt-5" id="grid-view">
 
-
 		<header class="page-header">
 			<h1>
 				<?php single_cat_title(); ?>
+				<small class="text-muted">
+					<?php echo '(' . $wp_query->found_posts; ?>
+					<?php echo $wp_query->found_posts > 1 ? ' exhibitions)' : ' exhibition)'; ?>
+				</small>
 			</h1>
 		</header><!-- .page-header -->
 

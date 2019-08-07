@@ -52,7 +52,7 @@ if( $posts ):
 						<?php endif; ?>
 
 						<div class="card-img-overlay d-flex justify-content-end align-items-center rounded">
-		          <div class="col-12 col-md-8 col-lg-6 col-xl-4">
+		          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
 								<?php if (get_post_meta( $post->ID, 'start_date', true )): ?>
 		            <h2 class="event-date mb-0">
 									<?php
@@ -69,17 +69,17 @@ if( $posts ):
 									?>
 		            </h2>
 								<?php endif; ?>
-		            <h1 class="event-title d-none d-md-block">
+		            <h1 class="event-title d-none d-md-block text-break">
 		              <?php echo wp_trim_words(the_title($before = '', $after = '', $echo = false), 7); ?>
 		            </h1>
-		            <div class="d-none d-md-block">
+		            <div class="d-none d-md-block event-description">
 		              <?php the_excerpt(); ?>
 		            </div>
 	              <a class="text-white" href="<?php echo get_permalink(); ?>">
 									<p class="d-none d-md-block">
 	                	Continue reading
 									</p>
-									<h1 class="event-title d-md-none">
+									<h1 class="event-title d-md-none text-break">
 			            	<?php echo wp_trim_words(the_title($before = '', $after = '', $echo = false), 7); ?>
 			            </h1>
 	              </a>

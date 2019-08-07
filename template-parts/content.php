@@ -15,7 +15,8 @@
 		<?php if ( is_single() ) : ?>
 			<h1 class="mb-4 entry-title">
 				<?php the_title() ?>
-				<?php if ($start_year = get_post_meta( $post->ID, 'start_date', true )): ?>
+				<?php if (get_post_meta( $post->ID, 'start_date', true )): ?>
+				<?php $start_year =  date("Y", strtotime(get_post_meta( $post->ID, 'start_date', true ))); ?>
 				<br>
 				<small class="text-muted">
 					<?php
@@ -38,7 +39,8 @@
 				<a href="<?php esc_url( get_permalink() ); ?>" rel="bookmark">
 					<?php the_title() ?>
 				</a>
-				<?php if ($start_year = get_post_meta( $post->ID, 'start_date', true )): ?>
+				<?php if (get_post_meta( $post->ID, 'start_date', true )): ?>
+				<?php $start_year =  date("Y", strtotime(get_post_meta( $post->ID, 'start_date', true ))); ?>
 				<br>
 				<small class="text-muted">
 					<?php

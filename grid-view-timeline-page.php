@@ -34,19 +34,19 @@ if( $posts ):
 			</div>
 			<div class="col overflow-hidden">
 				<div class="owl-carousel" id="tag-carousel">
-					<?php	$categories = get_categories(); ?>
-					<?php	foreach ( $categories as $category ) : ?>
-						<div class="tag p-2 bg-light small rounded d-inline-block">
-							<a href="<?php echo get_term_link($category); ?>" class="text-dark">
-								<?php echo $category->name; ?>
-							</a>
-						</div>
-					<?php	endforeach; ?>
-					<?php	$tags = get_tags(); ?>
+					<?php	$tags = get_tags(array('orderby' => 'count', 'order'   => 'DESC')); ?>
 					<?php	foreach ( $tags as $tag ) : ?>
 						<div class="tag p-2 bg-light small rounded d-inline-block">
 							<a href="<?php echo get_term_link($tag); ?>" class="text-dark">
 								<?php echo $tag->name; ?>
+							</a>
+						</div>
+					<?php	endforeach; ?>
+					<?php	$categories = get_categories(array('orderby' => 'count', 'order'   => 'DESC')); ?>
+					<?php	foreach ( $categories as $category ) : ?>
+						<div class="tag p-2 bg-light small rounded d-inline-block">
+							<a href="<?php echo get_term_link($category); ?>" class="text-dark">
+								<?php echo $category->name; ?>
 							</a>
 						</div>
 					<?php	endforeach; ?>
@@ -89,7 +89,7 @@ if( $posts ):
 									</svg>
 								<?php endif; ?>
 									<div class="card-img-overlay d-flex justify-content-center align-items-end rounded">
-										<h2 class="text-center mb-0"><?php echo wp_trim_words(the_title($before = '', $after = '', $echo = false), 7); ?></h2>
+										<h2 class="text-center mb-0 text-break"><?php echo wp_trim_words(the_title($before = '', $after = '', $echo = false), 7); ?></h2>
 									</div>
 							</a>
 					<?php

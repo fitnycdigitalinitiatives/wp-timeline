@@ -21,7 +21,8 @@ $posts = get_posts(array(
 	'meta_key' => 'start_date',
 	'order' => 'ASC'
 ));
-$prev_decade = '';
+$prev_divider = '';
+$timelineDivider = get_theme_mod('timeline_customizer_divider','Decade');
 if( $posts ):
 ?>
 
@@ -41,19 +42,19 @@ if( $posts ):
 			</div>
 			<div class="col overflow-hidden">
 				<div class="owl-carousel" id="tag-carousel">
-					<?php	$categories = get_categories(); ?>
-					<?php	foreach ( $categories as $category ) : ?>
-						<div class="tag p-2 bg-light small rounded d-inline-block">
-							<a href="<?php echo get_term_link($category); ?>" class="text-dark">
-								<?php echo $category->name; ?>
-							</a>
-						</div>
-					<?php	endforeach; ?>
-					<?php	$tags = get_tags(); ?>
+					<?php	$tags = get_tags(array('orderby' => 'count', 'order'   => 'DESC')); ?>
 					<?php	foreach ( $tags as $tag ) : ?>
 						<div class="tag p-2 bg-light small rounded d-inline-block">
 							<a href="<?php echo get_term_link($tag); ?>" class="text-dark">
 								<?php echo $tag->name; ?>
+							</a>
+						</div>
+					<?php	endforeach; ?>
+					<?php	$categories = get_categories(array('orderby' => 'count', 'order'   => 'DESC')); ?>
+					<?php	foreach ( $categories as $category ) : ?>
+						<div class="tag p-2 bg-light small rounded d-inline-block">
+							<a href="<?php echo get_term_link($category); ?>" class="text-dark">
+								<?php echo $category->name; ?>
 							</a>
 						</div>
 					<?php	endforeach; ?>
@@ -68,15 +69,19 @@ if( $posts ):
 					setup_postdata( $post );
 					if (get_post_meta( $post->ID, 'start_date', true )):
 						$start_year =  date("Y", strtotime(get_post_meta( $post->ID, 'start_date', true )));
-						$current_decade = substr_replace($start_year,'0s',3);
+						if ($timelineDivider == 'Decade'):
+							$current_divider = substr_replace($start_year,'0s',3);
+						elseif ($timelineDivider == 'Year'):
+							$current_divider = $start_year;
+						endif;
 					else:
 						$start_year = 'undated';
-						$current_decade = 'undated';
+						$current_divider = 'undated';
 					endif;
 					?>
 					<div class="card text-white shadow" data-dateStart="<?php echo $start_year; ?>" data-hash="<?php echo urlencode(the_title($before = '', $after = '', $echo = false)); ?>">
-						<?php	if ( $current_decade != $prev_decade ) : ?>
-						<h2 class="decade text-dark font-italic"><?php echo $current_decade; ?></h2>
+						<?php	if ( $current_divider != $prev_divider ) : ?>
+						<h2 class="decade text-dark font-italic"><?php echo $current_divider; ?></h2>
 						<?php endif; ?>
 						<?php if (has_post_thumbnail()) : ?>
 							<?php the_post_thumbnail( $size = 'post-thumbnail', array( 'class' => 'card-img' ) ); ?>
@@ -88,7 +93,7 @@ if( $posts ):
 						<?php endif; ?>
 
 						<div class="card-img-overlay d-flex justify-content-center align-items-center rounded">
-							<h1 class="mb-0 text-center event-title">
+							<h1 class="mb-0 text-center event-title text-break">
 								<a href="<?php echo get_permalink(); ?>" class="text-white">
 									<?php echo wp_trim_words(the_title($before = '', $after = '', $echo = false), 7); ?>
 								</a>
@@ -111,7 +116,13 @@ if( $posts ):
 							<?php endif; ?>
 						</div>
 					</div>
-					<?php	$prev_decade = substr_replace($start_year,'0s',3);; ?>
+					<?php
+					if ($timelineDivider == 'Decade'):
+						$prev_divider = substr_replace($start_year,'0s',3);
+					elseif ($timelineDivider == 'Year'):
+						$prev_divider = $start_year;
+					endif;
+					?>
 				<?php	endforeach; ?>
 				<?php	wp_reset_postdata(); ?>
 			</div>

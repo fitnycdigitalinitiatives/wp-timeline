@@ -55,20 +55,20 @@ function wp_bootstrap_starter_entry_footer() {
 		$tags = get_the_tags();
 		if ( $categories OR  $tags) {
 			echo '<ul class="list-inline">';
-			if ($categories) {
-				foreach ( $categories as $category ) {
+			if ($tags) {
+				foreach ( $tags as $tag ) {
 					echo '<li class="list-inline-item small p-2 mb-2 bg-secondary rounded">';
-					echo '<a href="' . get_term_link($category). '" class="text-white">';
-					echo $category->name;
+					echo '<a href="' . get_term_link($tag). '" class="text-white">';
+					echo $tag->name;
 					echo '</a>';
 					echo '</li>';
 				}
 			}
-			if ($tags) {
-				foreach ( $tags as $tag ) {
+			if ($categories) {
+				foreach ( $categories as $category ) {
 					echo '<li class="list-inline-item small p-2 mb-2 bg-light rounded">';
-					echo '<a href="' . get_term_link($tag). '" class="text-dark">';
-					echo $tag->name;
+					echo '<a href="' . get_term_link($category). '" class="text-dark">';
+					echo $category->name;
 					echo '</a>';
 					echo '</li>';
 				}
