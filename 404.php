@@ -20,13 +20,7 @@ get_header(); ?>
 						</header><!-- .page-header -->
 
 						<div class="page-content">
-							<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'timeline-theme' ); ?></p>
-
-							<?php
-								get_search_form();
-
-
-							?>
+							<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links in the menu?', 'timeline-theme' ); ?></p>
 
 						</div><!-- .page-content -->
 					</section><!-- .error-404 -->

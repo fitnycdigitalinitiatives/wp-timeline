@@ -186,7 +186,8 @@ iframe {
 -------------------------------------------------------------- */
 @media (min-width: 768px) and (min-height: 650px) {
   #timeline-viewport {
-    height: calc(100vh - (66px + 70px + 126px)); /* Navbar plus tags plus slider bar at bottom */
+    height: calc(100vh - (66px + 70px + 126px)); /* Navbar plus tags plus slider bar at bottom, fallback for no variables */
+    height: calc((var(--vh, 1vh) * 100) - (66px + 70px + 126px)); /* JS fix for mobile browsers */
   }
 }
 #slider-nav-viewport {
@@ -326,13 +327,18 @@ iframe {
 #tag-viewport {
   height: 70px;
 }
-#tag-viewport .tag {
+#tag-viewport .owl-stage {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-box;
+  display: box;
 }
 
 /* Single-view */
 @media (min-width: 768px) and (min-height: 650px) {
   #single-viewport {
-    height: calc(100vh - (66px + 60px + 126px)); /* Navbar plus tags plus slider bar at bottom */
+    height: calc(100vh - (66px + 60px + 126px)); /* Navbar plus tags plus slider bar at bottom, fallback for no variable */
+    height: calc((var(--vh, 1vh) * 100) - (66px + 60px + 126px)); /* JS fix for mobile browsers */
     margin-top: 60px;
   }
 }
