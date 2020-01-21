@@ -30,13 +30,13 @@ if( $posts ):
 		<div class="row align-items-center justify-content-around" id="tag-viewport">
 			<div class="col-auto d-none d-md-block order-first">
 				<button type="button" class="btn btn-light px-3" id="previous-tag">
-					<i class="fas fa-chevron-left text-dark"></i>
+					<span class="fas fa-chevron-left text-dark"></span>
 					<span class="sr-only">Previous tags</span>
 				</button>
 			</div>
 			<div class="col-auto d-none d-md-block order-last">
 				<button type="button" class="btn btn-light px-3" id="next-tag">
-					<i class="fas fa-chevron-right text-dark"></i>
+					<span class="fas fa-chevron-right text-dark"></span>
 					<span class="sr-only">Next tags</span>
 				</button>
 			</div>
@@ -130,13 +130,13 @@ if( $posts ):
 		<div class="row align-items-center justify-content-center py-3" id="slider-nav-viewport">
 			<div class="col-auto d-none d-md-block order-first">
 				<button type="button" class="btn btn-gold px-3 text-white" id="previous">
-					<i class="fas fa-chevron-left text-white"></i>
+					<span class="fas fa-chevron-left text-white"></span>
 					<span class="sr-only">Previous slide</span>
 				</button>
 			</div>
 			<div class="col-auto d-none d-md-block order-last">
 				<button type="button" class="btn btn-gold px-3 text-white" id="next">
-					<i class="fas fa-chevron-right text-white"></i>
+					<span class="fas fa-chevron-right text-white"></span>
 					<span class="sr-only">Next slide</span>
 				</button>
 			</div>

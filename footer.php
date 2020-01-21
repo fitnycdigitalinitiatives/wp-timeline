@@ -34,23 +34,23 @@
 					<ul class="list-inline" id="social">
 						<li class="list-inline-item">
 							<a class="text-dark" href="https://twitter.com/museumatFIT" aria-label="Museum at FIT Twitter">
-								<i class="fab fa-twitter fa-lg" aria-hidden="" title="Museum at FIT Twitter"></i>
+								<span class="fab fa-twitter fa-lg" aria-hidden="" title="Museum at FIT Twitter"></span>
 							</a>
 						</li>
 			      <li class="list-inline-item">
 							<a class="text-dark" href="https://www.facebook.com/TheMuseumAtFIT" aria-label="Museum at FIT Facebook">
-								<i class="fab fa-facebook fa-lg" aria-hidden="" title="Museum at FIT Facebook"></i>
+								<span class="fab fa-facebook fa-lg" aria-hidden="" title="Museum at FIT Facebook"></span>
 							</a>
 						</li>
 
 			      <li class="list-inline-item">
 							<a class="text-dark" href="http://pinterest.com/museumatfit/" aria-label="Museum at FIT Pinterest">
-								<i class="fab fa-pinterest-p fa-lg" aria-hidden="" title="Museum at FIT Pinterest"></i>
+								<span class="fab fa-pinterest-p fa-lg" aria-hidden="" title="Museum at FIT Pinterest"></span>
 							</a>
 						</li>
 			      <li class="list-inline-item">
 							<a class="text-dark" href="https://instagram.com/museumatfit" aria-label="Museum at FIT Instagram">
-								<i class="fab fa-instagram fa-lg" aria-hidden="" title="Museum at FIT Instagram"></i>
+								<span class="fab fa-instagram fa-lg" aria-hidden="" title="Museum at FIT Instagram"></span>
 							</a>
 						</li>
 			    </ul>

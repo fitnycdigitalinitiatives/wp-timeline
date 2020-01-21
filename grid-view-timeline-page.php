@@ -22,13 +22,13 @@ if( $posts ):
 		<div class="row align-items-center justify-content-around" id="tag-viewport">
 			<div class="col-auto d-none d-md-block order-first">
 				<button type="button" class="btn btn-light px-3" id="previous-tag">
-					<i class="fas fa-chevron-left text-dark"></i>
+					<span class="fas fa-chevron-left text-dark"></span>
 					<span class="sr-only">Previous tags</span>
 				</button>
 			</div>
 			<div class="col-auto d-none d-md-block order-last">
 				<button type="button" class="btn btn-light px-3" id="next-tag">
-					<i class="fas fa-chevron-right text-dark"></i>
+					<span class="fas fa-chevron-right text-dark"></span>
 					<span class="sr-only">Next tags</span>
 				</button>
 			</div>

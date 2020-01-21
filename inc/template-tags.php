@@ -35,7 +35,7 @@ function wp_bootstrap_starter_posted_on() {
 	echo '<span class="posted-on">' . $posted_on . '</span> <span class="byline"> ' . $byline . '</span>'; // WPCS: XSS OK.
 
     if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-        echo ' | <span class="comments-link"><i class="fa fa-comments" aria-hidden="true"></i> ';
+        echo ' | <span class="comments-link"><span class="fa fa-comments" aria-hidden="true"></span> ';
         /* translators: %s: post title */
         comments_popup_link( sprintf( wp_kses( __( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'timeline-theme' ), array( 'span' => array( 'class' => array() ) ) ), get_the_title() ) );
         echo '</span>';
@@ -168,7 +168,7 @@ if ( ! function_exists( 'wp_bootstrap_starter_comment' ) ) :
                                         <?php printf( _x( '%1$s at %2$s', '1: date, 2: time', 'timeline-theme' ), get_comment_date(), get_comment_time() ); ?>
                                     </time>
                                 </a>
-                                <?php edit_comment_link( __( '<i class="fas fa-edit"></i> Edit', 'timeline-theme' ), '<span class="edit-link">', '</span>' ); ?>
+                                <?php edit_comment_link( __( '<span class="fas fa-edit"></span> Edit', 'timeline-theme' ), '<span class="edit-link">', '</span>' ); ?>
                             </div>
                         </div>
 
