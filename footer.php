@@ -16,13 +16,14 @@
 	    <div class="row align-items-center justify-content-between">
 	    	<div class="col-md-8 mb-3 mb-md-0">
 					<a class="text-dark d-inline-block mb-3" href="https://www.fitnyc.edu/museum/" id="footer-logo">
-	          <img class="mr-1" src="<?php echo get_template_directory_uri() . '/inc/assets/images/FITmuseum_black-gold.png'; ?>" alt="Museum at FIT Logo"/>
-	          <span class="align-middle text-uppercase small">Celebrating fashion for 50 years</span>
+	          <img class="mr-0 mr-md-1" src="<?php echo get_template_directory_uri() . '/inc/assets/images/FITmuseum_black.png'; ?>" alt="Museum at FIT Logo"/>
+						<br class="d-md-none">
+	          <span class="align-middle text-uppercase small">The Most Fashionable Museum in New York City</span>
 	        </a>
 					<address class="small">
 						Museum at the Fashion Institute of Technology
 						<br>
-						Seventh Avenue at 27 Street
+						227 West 27th Street
 						<br>
 						New York City 10001-5992
 					</address>
@@ -57,8 +58,8 @@
 					<p class="text-uppercase mb-1" id="footer-title">
 						Exhibitions Timeline
 					</p>
-					<p class="small mb-0">
-						This site is an initiative of the <a class="text-dark" href="https://www.fitnyc.edu/museum/">Museum at FIT</a> and the <a class="text-dark" href="https://www.fitnyc.edu/library/">FIT Library</a>.
+					<p class="small mb-0" id="footer-credit">
+						This site is an initiative of the <a href="https://www.fitnyc.edu/museum/">Museum at FIT</a> and the <a href="https://www.fitnyc.edu/library/">FIT Library</a>.
 					</p>
 	    	</div>
 	    </div>

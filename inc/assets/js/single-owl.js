@@ -1,5 +1,5 @@
-jQuery( function ( $ ) {
-  $(document).ready(function(){
+jQuery(function($) {
+  $(document).ready(function() {
     //Fullscreen fix for mobile browsers
     // First we get the viewport height and we multiple it by 1% to get a value for a vh unit
     var initialinnerHeight = window.innerHeight;
@@ -24,10 +24,9 @@ jQuery( function ( $ ) {
     var slider = document.getElementById('range-slider');
     noUiSlider.create(slider, {
       start: 0,
-      step: 1,
       range: {
-          'min': 0,
-          'max': 100
+        'min': 0,
+        'max': 100
       }
     });
     if (window.location.hash) {
@@ -37,8 +36,7 @@ jQuery( function ( $ ) {
         hashArray.push($(this).data('hash'));
       });
       var startPosition = hashArray.indexOf(startHash);
-    }
-    else {
+    } else {
       var startPosition = 0;
     }
     var owl = $('#single-carousel');
@@ -53,7 +51,7 @@ jQuery( function ( $ ) {
       stagePadding: 60,
       nav: false,
       dots: false,
-      URLhashListener:true,
+      URLhashListener: true,
       startPosition: startPosition
     });
 
@@ -68,14 +66,13 @@ jQuery( function ( $ ) {
     });
 
 
-    function sliderSetup(currentState){
+    function sliderSetup(currentState) {
       pageSize = currentState.page.size;
       itemCount = currentState.item.count;
       coordIndex = itemCount - pageSize - 1;
       if (coordIndex < 0) {
         $('#range-slider').hide();
-      }
-      else {
+      } else {
         maxSlider = currentState.relatedTarget._coordinates[coordIndex];
         currentIndex = currentState.item.index;
         if (currentIndex == 0) {
@@ -97,11 +94,15 @@ jQuery( function ( $ ) {
         });
         coordListMarker = [0].concat(currentState.relatedTarget._coordinates);
         var dateArrayObject = [];
-        var currentDate = '';
+        var prevDecade = '';
+        var currentYear = '';
+        var currentDecade = '';
         for (var x in dateArray) {
           dateObject = {};
-          if (dateArray[x] != currentDate) {
-            dateObject.value = dateArray[x];
+          currentYear = dateArray[x].toString();
+          currentDecade = currentYear.substr(0, 3) + '0s';
+          if (currentDecade != prevDecade) {
+            dateObject.value = currentDecade;
             if ((Math.abs(coordListMarker[x])) > (Math.abs(maxSlider))) {
               dateObject.coordinate = maxSlider;
             } else {
@@ -109,32 +110,32 @@ jQuery( function ( $ ) {
             }
             dateArrayObject.push(dateObject);
             // set current
-            currentDate = dateArray[x];
+            prevDecade = currentDecade;
           }
         }
         // delete old markers
         $('.date-marker').detach();
-        // add new
+        // add new markers and create linear gradient for slider background
+        var gradient = 'linear-gradient(to right';
+        var decadeCount = dateArrayObject.length;
         for (var x in dateArrayObject) {
           var percentLeft = (Math.abs(dateArrayObject[x].coordinate) / Math.abs(maxSlider)) * 100;
           $('#range-slider').append(
             '<div class="date-marker px-1" style="left: ' + percentLeft + '%;">' + dateArrayObject[x].value + '</div>'
           );
-        }
-        // remove duplicates
-        var yearArray = [];
-        var duplicates = $('.date-marker').filter(function() {
-          return $(this).attr( "style" ) == 'left: 100%;';
-        });
-        duplicates.each(function(index) {
-          yearArray.push(Number($(this).text()));
-        });
-        var maxYear = Math.max.apply(Math,yearArray);
-        duplicates.each(function(index) {
-          if ((Number($(this).text())) != maxYear) {
-            $(this).detach();
+          // Previous color create hard stops in gradient
+          if (x != 0) {
+            var prevTransparency = (Number(x)) / decadeCount;
+            var prevColor = 'rgba(168, 2, 2, ' + prevTransparency + ')'
+            gradient += ', ' + prevColor + ' ' + percentLeft + '%';
           }
-        });
+          var transparency = (Number(x) + 1) / decadeCount;
+          var color = 'rgba(168, 2, 2, ' + transparency + ')'
+          gradient += ', ' + color + ' ' + percentLeft + '%';
+        }
+        gradient += ')';
+        $('#range-slider').css("background-image", gradient);
+        // Remove overlaps
         var rectList = [];
         var currentRect = '';
         $('.date-marker').each(function(index) {
@@ -142,12 +143,10 @@ jQuery( function ( $ ) {
           if (!jQuery.isEmptyObject(rectList)) {
             if (checkforoverlap(currentRect, rectList)) {
               $(this).detach();
-            }
-            else {
+            } else {
               rectList.push(currentRect);
             }
-          }
-          else {
+          } else {
             rectList.push(currentRect);
           }
         });
@@ -157,21 +156,22 @@ jQuery( function ( $ ) {
     function checkforoverlap(currentRect, rectList) {
       for (var x in rectList) {
         var overlap = !(currentRect.right < rectList[x].left ||
-            currentRect.left > rectList[x].right ||
-            currentRect.bottom < rectList[x].top ||
-            currentRect.top > rectList[x].bottom);
+          currentRect.left > rectList[x].right ||
+          currentRect.bottom < rectList[x].top ||
+          currentRect.top > rectList[x].bottom);
         if (overlap) {
           return true;
         }
       }
     }
+
     function sliderDrag(currentState) {
-      matrix = $('#single-carousel .owl-stage').css( "transform").replace(/[^0-9\-.,]/g, '').split(',');
+      matrix = $('#single-carousel .owl-stage').css("transform").replace(/[^0-9\-.,]/g, '').split(',');
       xShift = matrix[12] || matrix[4];
       slider.noUiSlider.set(Math.abs(xShift));
     }
     // Move Timeline by moving range input
-    slider.noUiSlider.on('update', function (values, handle) {
+    slider.noUiSlider.on('update', function(values, handle) {
       rangeShift = values[handle];
       $('#single-carousel .owl-stage').css({
         "transform": "translate3d(" + -rangeShift + "px, 0px, 0px)",
@@ -179,8 +179,8 @@ jQuery( function ( $ ) {
       });
     });
     // Move Timeline to the Appropriate Item Based on Nearest Position
-    slider.noUiSlider.on('change', function (values, handle) {
-      currentMatrix = $('#single-carousel .owl-stage').css( "transform").replace(/[^0-9\-.,]/g, '').split(',');
+    slider.noUiSlider.on('change', function(values, handle) {
+      currentMatrix = $('#single-carousel .owl-stage').css("transform").replace(/[^0-9\-.,]/g, '').split(',');
       currentxShift = currentMatrix[12] || currentMatrix[4];
       coordList = [0].concat(currentState.relatedTarget._coordinates);
       var closest = coordList.reduce(function(prev, curr) {
@@ -194,13 +194,13 @@ jQuery( function ( $ ) {
     });
     // Go to the next item
     $('#next').click(function() {
-        owl.trigger('next.owl.carousel');
+      owl.trigger('next.owl.carousel');
     });
     // Go to the previous item
     $('#previous').click(function() {
-        // With optional speed parameter
-        // Parameters has to be in square bracket '[]'
-        owl.trigger('prev.owl.carousel');
+      // With optional speed parameter
+      // Parameters has to be in square bracket '[]'
+      owl.trigger('prev.owl.carousel');
     });
 
   });
