@@ -547,7 +547,7 @@ article .entry-content a {
   clear: both;
 }
 
-div[id^=bwg_container].bwg_container .bwg-a {
+div[id^=bwg_container].bwg_container .bwg-a:focus {
   outline: auto;
 }
 
