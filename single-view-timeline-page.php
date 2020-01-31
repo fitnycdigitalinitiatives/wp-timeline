@@ -105,7 +105,7 @@ if( $posts ):
 				</button>
 			</div>
 			<div class="col mx-2 mx-md-0">
-				<div class="w-100" id="range-slider"></div>
+				<div class="w-100" id="range-slider" aria-hidden="true"></div>
 			</div>
 		</div>
 

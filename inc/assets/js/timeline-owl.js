@@ -24,6 +24,7 @@ jQuery(function($) {
     var slider = document.getElementById('range-slider');
     noUiSlider.create(slider, {
       start: 0,
+      keyboardSupport: false,
       range: {
         'min': 0,
         'max': 100
@@ -102,6 +103,7 @@ jQuery(function($) {
         }
         slider.noUiSlider.updateOptions({
           start: currentValue,
+          tooltips: true,
           range: {
             'min': 0,
             'max': Math.abs(maxSlider)

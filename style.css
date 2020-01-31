@@ -264,7 +264,6 @@ article .entry-content a {
 }
 #range-slider .noUi-handle:focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem #987a2c80;
 }
 #timeline-viewport .owl-stage {
   display: flex;
