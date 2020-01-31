@@ -81,20 +81,31 @@ jQuery(function($) {
         } else {
           currentValue = Math.abs(currentState.relatedTarget._coordinates[currentIndex - 1]);
         }
+        // Create list of dates and coordinates for tooltip and decade markers
+        var dateArray = [];
+        $(".owl-item .card").each(function(index) {
+          dateArray.push($(this).data('datestart'));
+        });
+        var coordListMarker = [0].concat(currentState.relatedTarget._coordinates);
+
         slider.noUiSlider.updateOptions({
           start: currentValue,
+          tooltips: {
+            to: function(value) {
+              var closestCoor = coordListMarker.reduce(function(prev, curr) {
+                return (Math.abs(Math.abs(curr) - value) < Math.abs(Math.abs(prev) - value) ? curr : prev);
+              });
+              var coorIndex = coordListMarker.indexOf(closestCoor);
+              return dateArray[coorIndex];
+            }
+          },
           range: {
             'min': 0,
             'max': Math.abs(maxSlider)
           }
         });
         // Set up date markers
-        var dateArray = [];
-        $(".owl-item .card").each(function(index) {
-          dateArray.push($(this).data('datestart'));
-        });
-        coordListMarker = [0].concat(currentState.relatedTarget._coordinates);
-        var dateArrayObject = [];
+        var decadeArrayObject = [];
         var prevDecade = '';
         var currentYear = '';
         var currentDecade = '';
@@ -109,7 +120,7 @@ jQuery(function($) {
             } else {
               dateObject.coordinate = coordListMarker[x];
             }
-            dateArrayObject.push(dateObject);
+            decadeArrayObject.push(dateObject);
             // set current
             prevDecade = currentDecade;
           }
@@ -118,11 +129,11 @@ jQuery(function($) {
         $('.date-marker').detach();
         // add new markers and create linear gradient for slider background
         var gradient = 'linear-gradient(to right';
-        var decadeCount = dateArrayObject.length;
-        for (var x in dateArrayObject) {
-          var percentLeft = (Math.abs(dateArrayObject[x].coordinate) / Math.abs(maxSlider)) * 100;
+        var decadeCount = decadeArrayObject.length;
+        for (var x in decadeArrayObject) {
+          var percentLeft = (Math.abs(decadeArrayObject[x].coordinate) / Math.abs(maxSlider)) * 100;
           $('#range-slider').append(
-            '<div class="date-marker px-1" style="left: ' + percentLeft + '%;">' + dateArrayObject[x].value + '</div>'
+            '<div class="date-marker px-1" style="left: ' + percentLeft + '%;">' + decadeArrayObject[x].value + '</div>'
           );
           // Previous color create hard stops in gradient
           if (x != 0) {
