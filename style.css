@@ -329,8 +329,8 @@ article .entry-content a {
   position: absolute;
   top: 100%;
   left: 50%;
-  margin-left: -4px;
-  border-width: 4px;
+  margin-left: -3px;
+  border-width: 3px;
   border-style: solid;
   border-color: rgba(108, 117, 125, 95%) transparent transparent transparent;
 }
