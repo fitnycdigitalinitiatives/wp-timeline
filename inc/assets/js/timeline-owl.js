@@ -152,17 +152,18 @@ jQuery(function($) {
         var decadeCount = decadeArrayObject.length;
         for (var x in decadeArrayObject) {
           var percentLeft = (Math.abs(decadeArrayObject[x].coordinate) / Math.abs(maxSlider)) * 100;
+          var notch = (percentLeft == 0 || percentLeft == 100) ? 'notchless' : 'notch';
           $('#range-slider').append(
-            '<div class="date-marker px-1" style="left: ' + percentLeft + '%;">' + decadeArrayObject[x].value + '</div>'
+            '<div class="date-marker px-1 ' + notch + '" style="left: ' + percentLeft + '%;">' + decadeArrayObject[x].value + '</div>'
           );
           // Previous color create hard stops in gradient
           if (x != 0) {
             var prevTransparency = (Number(x)) / decadeCount;
-            var prevColor = 'rgba(168, 2, 2, ' + prevTransparency + ')'
+            var prevColor = 'rgba(108, 117, 125, ' + prevTransparency + ')'
             gradient += ', ' + prevColor + ' ' + percentLeft + '%';
           }
           var transparency = (Number(x) + 1) / decadeCount;
-          var color = 'rgba(168, 2, 2, ' + transparency + ')'
+          var color = 'rgba(108, 117, 125, ' + transparency + ')'
           gradient += ', ' + color + ' ' + percentLeft + '%';
         }
         gradient += ')';
